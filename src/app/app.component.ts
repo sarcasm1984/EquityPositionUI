@@ -65,9 +65,10 @@ export class AppComponent {
           "qty": this.lotSize,
           "buy_Sell": this.selectedBuySell
       };
-
+      this.showLabel = true;
       (await this.transactionService.executeTrade(postBody)).subscribe(() => {
         this.TextMessage = 'Trade Executed';
+        this.showLabel=!this.showLabel;
       });
     } catch(error){
       this.TextMessage = 'Error while executing trade';
