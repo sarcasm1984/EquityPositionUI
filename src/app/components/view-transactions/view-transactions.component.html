@@ -1,0 +1,42 @@
+<div class="row border">
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Select Security Code: </label>
+          <select [(ngModel)]="selectedCodeForTransaction" name="codeSelect">
+            <option *ngFor="let code of allCodesForTransaction">
+              {{ code.name }}
+            </option>
+            <option>ALL</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-primary" (click)="this.viewTransactions()">View Transaction</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="showTransactions">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Trade ID</th>
+              <th>Trade Version</th>
+              <th>Security Code</th>
+              <th>Action</th>
+              <th>Quantity</th>
+              <th>Buy/Sell</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of rowData">
+              <td>{{ row.id }}</td>
+              <td>{{ row.tradeId }}</td>
+              <td>{{ row.tradeVersion }}</td>
+              <td>{{ row.securityCode }}</td>
+              <td>{{ row.action }}</td>
+              <td>{{ row.qty }}</td>
+              <td>{{ row.buy_Sell }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>

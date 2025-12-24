@@ -1,0 +1,58 @@
+<div class="row border">
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Select Security Code: </label>
+          <select [(ngModel)]="selectedCodeForPosition" name="codeSelect">
+            <option *ngFor="let code of allCodesForPosition">
+              {{ code.name }}
+            </option>
+            <option>ALL</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-primary" (click)="this.viewPositions()">View Position</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="showPosition">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td>Security Code</td>
+            <td>{{positionObj.securityCode}}</td>
+          </tr>
+          <tr>
+            <td>Current Value</td>
+            <td>{{positionObj.value}}</td>
+          </tr>
+          <tr>
+            <td>Last Transaction Trade Id</td>
+            <td>{{positionObj.tradeId}}</td>
+          </tr>
+          <tr>
+            <td>Last Transaction Trade Version</td>
+            <td>{{positionObj.tradeVersion}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row" *ngIf="showPositionArr">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Security Code</th>
+              <th>Current Value</th>
+              <th>Last Transaction Trade Id</th>
+              <th>Last Transaction Trade Version</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of posData">
+              <td>{{ row.securityCode }}</td>
+              <td>{{ row.value }}</td>
+              <td>{{ row.tradeId }}</td>
+              <td>{{ row.tradeVersion }}</td>
+            </tr>
+          </tbody>
+          </table>
+      </div>
+    </div>

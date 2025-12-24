@@ -1,0 +1,33 @@
+    <div class="row border">
+      <div class="col-sm-3">
+        <label>Select Security Code: </label>
+        <select [(ngModel)]="selectedCode" name="codeSelect">
+          <option *ngFor="let code of allCodes">
+            {{ code.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <label>Select Buy Sell: </label>
+        <select [(ngModel)]="selectedBuySell" name="BuySellSelect">
+          <option *ngFor="let item of buysell">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <label>Select Action: </label>
+        <select [(ngModel)]="selectedAction" name="ActionSelect">
+          <option *ngFor="let item of action">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <label>Enter Lot Size: </label>
+        <input id="txtLotSize" type="text" [(ngModel)]="lotSize"/>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" (click)="this.executeTrade()">Execute Trade</button>
+      </div>
+    </div>
