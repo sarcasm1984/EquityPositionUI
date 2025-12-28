@@ -38,15 +38,24 @@ export class ExecuteTradeComponent {
   executeTrade = async() =>
   {
     try{
-      let postBody = {
+      if(this.selectedCode!=undefined && this.selectedCode!=null &&
+        this.selectedBuySell!=undefined && this.selectedBuySell!=null &&
+        this.selectedAction!=undefined && this.selectedAction!=null &&
+        this.lotSize>0){
+
+          let postBody = {
           "securityCode": this.selectedCode,
           "action": this.selectedAction,
           "qty": this.lotSize,
           "buy_Sell": this.selectedBuySell
-      };
-      (await this.transactionService.executeTrade(postBody)).subscribe(() => {
-        this.msgShare.changeMessage({showLabel:true,text:'Trade Executed'});
-      });
+          };
+          (await this.transactionService.executeTrade(postBody)).subscribe(() => {
+            this.msgShare.changeMessage({showLabel:true,text:'Trade Executed'});
+          });
+        }
+        else {
+          this.msgShare.changeMessage({showLabel:true,text:'All fields not selected to execute trade.'});
+        }
     } catch(error){
       this.msgShare.changeMessage({showLabel:true,text:'Error while executing trade'});
     }

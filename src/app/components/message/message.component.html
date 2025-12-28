@@ -1,3 +1,7 @@
-<div class="alert alert-light border" role="alert" *ngIf="msg.showLabel">
-    {{msg.text}}
+<div class="ui icon message" *ngIf="msg.showLabel">
+    <i class="bell icon"></i>
+    <div class="content">
+        <p>{{msg.text}}</p>
+    </div>
 </div>
+

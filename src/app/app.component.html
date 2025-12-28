@@ -1,14 +1,26 @@
-<div>
-  <div class="container border">
-    <h1>{{title}}</h1>
+<div class="ui grid container">
+  <div class="row">
+    <h1 class="ui header">{{title}}</h1>
   </div>
-  <span></span>
-  <div class="container border">
-    <app-message></app-message>
-    <app-execute-trade></app-execute-trade>
-    <app-view-positions></app-view-positions>
-    <app-view-transactions></app-view-transactions>
+  <div class="row">
+    <div class="sixteen wide column">
+      <app-message></app-message>
+    </div>
+  </div>
+  <div class="row">
+    <div class="four wide column">
+      <app-execute-trade></app-execute-trade>
+    </div>
+    <div class="twelve wide column">
+      <app-view-positions></app-view-positions>
+    </div>
+  </div>
+  <div class="row">
+    <div class="sixteen wide column">
+      <app-view-transactions></app-view-transactions>
+    </div>
+  </div>
 </div>
-</div>
+
 
 <router-outlet />

@@ -1,33 +1,46 @@
-    <div class="row border">
-      <div class="col-sm-3">
-        <label>Select Security Code: </label>
-        <select [(ngModel)]="selectedCode" name="codeSelect">
+<div class="ui segment">
+  <a class="ui blue ribbon label">Execute Trade</a> 
+  <form class="ui form">
+    <div class="field">
+      <label>Select Security Code</label>
+      <div class="field">
+        <select class="ui dropdown" [(ngModel)]="selectedCode" name="codeSelect" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let code of allCodes">
             {{ code.name }}
           </option>
         </select>
       </div>
-      <div class="col-sm-2">
-        <label>Select Buy Sell: </label>
-        <select [(ngModel)]="selectedBuySell" name="BuySellSelect">
+    </div>
+    <div class="field">
+      <label>Select Buy Sell</label>
+      <div class="field">
+        <select class="ui dropdown" [(ngModel)]="selectedBuySell" name="BuySellSelect" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let item of buysell">
             {{ item.name }}
           </option>
         </select>
       </div>
-      <div class="col-sm-2">
-        <label>Select Action: </label>
-        <select [(ngModel)]="selectedAction" name="ActionSelect">
+    </div>
+    <div class="field">
+      <label>Select Action</label>
+      <div class="field">
+        <select class="ui dropdown" [(ngModel)]="selectedAction" name="ActionSelect" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let item of action">
             {{ item.name }}
           </option>
         </select>
       </div>
-      <div class="col-sm-3">
-        <label>Enter Lot Size: </label>
-        <input id="txtLotSize" type="text" [(ngModel)]="lotSize"/>
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-primary" (click)="this.executeTrade()">Execute Trade</button>
+    </div>
+    <div class="field">
+      <label>Enter Lot Size</label>
+      <div class="field">
+        <div class="ui input">
+          <input id="txtLotSize" type="text" [(ngModel)]="lotSize" placeholder="Enter Lot Size" [ngModelOptions]="{standalone: true}"/>
+        </div>
       </div>
     </div>
+    <div class="field">
+      <button class="ui primary button" (click)="this.executeTrade()">Execute</button>
+    </div>
+  </form>
+</div>
