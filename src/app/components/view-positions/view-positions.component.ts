@@ -5,10 +5,15 @@ import { environment } from '../../../environments/environment-local';
 import { position } from '../../models/position';
 import { PositionService } from '../../services/position.service';
 import { MessageshareService } from '../../services/messageshare.service';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
+import { AgGridAngular } from 'ag-grid-angular';
+import type {ColDef } from 'ag-grid-community';
+
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-view-positions',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AgGridAngular],
   templateUrl: './view-positions.component.html',
   styleUrl: './view-positions.component.css'
 })
@@ -22,6 +27,18 @@ export class ViewPositionsComponent {
   posData: position[] = [];
   showPosition: boolean = false;
   showPositionArr: boolean = false;
+
+  private colDefs: ColDef<position>[] = [
+    { field: "securityCode", headerName:"Security Code", filter:true },
+    { field: "tradeId", headerName:"Trade ID", filter:true },
+    { field: "tradeVersion", headerName:"Trade Version", filter:true },
+    { field: "value", headerName:"Quantity", filter:true }
+  ];
+  
+  private defaultColDef: ColDef = {
+    flex: 1,
+    minWidth: 100
+  };
 
   allCodesForPosition = environment.SecurityCodeList;
   selectedCodeForPosition: any;

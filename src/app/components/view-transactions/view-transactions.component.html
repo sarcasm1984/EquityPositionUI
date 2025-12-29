@@ -1,4 +1,4 @@
-<div class="ui segment">
+<div class="ui raised segment">
   <a class="ui blue ribbon label">View Transactions</a> 
   <form class="ui form">
     <div class="field">
@@ -18,30 +18,7 @@
     </div>
     </div>
     <div class="field" *ngIf="showTransactions">
-      <table class="ui celled table">
-        <thead>
-          <tr>
-            <th>Transaction ID</th>
-            <th>Trade ID</th>
-            <th>Trade Version</th>
-            <th>Security Code</th>
-            <th>Action</th>
-            <th>Quantity</th>
-            <th>Buy/Sell</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of rowData">
-            <td>{{ row.id }}</td>
-            <td>{{ row.tradeId }}</td>
-            <td>{{ row.tradeVersion }}</td>
-            <td>{{ row.securityCode }}</td>
-            <td>{{ row.action }}</td>
-            <td>{{ row.qty }}</td>
-            <td>{{ row.buy_Sell }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <ag-grid-angular style="width: 100%; height: 300px;" [columnDefs]="this.colDefs" [rowData]="this.rowData" [defaultColDef]="this.defaultColDef" />
     </div>
   </form>
 </div>    

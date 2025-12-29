@@ -1,4 +1,4 @@
-<div class="ui segment">
+<div class="ui raised segment">
   <a class="ui blue right ribbon label">View Positions</a> 
   <form class="ui form">
     <div class="field">
@@ -30,24 +30,7 @@
       </div>
     </div>
     <div class="field" *ngIf="showPositionArr">
-      <table class="ui celled table">
-        <thead>
-          <tr>
-            <th>Security Code</th>
-            <th>Current Value</th>
-            <th>Last Transaction Trade Id</th>
-            <th>Last Transaction Trade Version</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of posData">
-            <td>{{ row.securityCode }}</td>
-            <td>{{ row.value }}</td>
-            <td>{{ row.tradeId }}</td>
-            <td>{{ row.tradeVersion }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <ag-grid-angular style="width: 100%; height: 250px;" [columnDefs]="this.colDefs" [rowData]="this.posData" [defaultColDef]="this.defaultColDef" />
     </div>
   </form>
 </div>
