@@ -7,7 +7,7 @@ import { PositionService } from '../../services/position.service';
 import { MessageshareService } from '../../services/messageshare.service';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
 import { AgGridAngular } from 'ag-grid-angular';
-import type {ColDef } from 'ag-grid-community';
+import type {ColDef, GridOptions, PaginationChangedEvent, GridApi } from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -20,7 +20,12 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export class ViewPositionsComponent {
   constructor(private positionService: PositionService,
     private msgShare: MessageshareService
-  ){}
+  ){
+    this.gridOptions.pagination = true;
+    this.gridOptions.paginationPageSize = 5;
+    this.gridOptions.paginationPageSizeSelector = [5, 10, 15];
+    this.gridOptions.onPaginationChanged = this.onPaginationChanged;
+  }
 
   TextMessage: string | undefined='';
   positionObj: position = {};
@@ -40,8 +45,16 @@ export class ViewPositionsComponent {
     minWidth: 100
   };
 
+  private gridOptions: GridOptions = {};
+  private gridApi!: GridApi;
+
   allCodesForPosition = environment.SecurityCodeList;
   selectedCodeForPosition: any;
+
+  onPaginationChanged = (evt: PaginationChangedEvent) => {
+    this.gridApi = evt.api;
+    this.gridOptions.paginationPageSize = this.gridApi.paginationGetPageSize();
+  }
 
   viewPositions = async () =>
   {

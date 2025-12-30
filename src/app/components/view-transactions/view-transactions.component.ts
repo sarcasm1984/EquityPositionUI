@@ -7,7 +7,7 @@ import { TransactionService } from '../../services/transaction.service';
 import { MessageshareService } from '../../services/messageshare.service';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
 import { AgGridAngular } from 'ag-grid-angular';
-import type {ColDef } from 'ag-grid-community';
+import type {ColDef, GridOptions, PaginationChangedEvent, GridApi } from 'ag-grid-community';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -20,7 +20,12 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export class ViewTransactionsComponent {
   constructor(private transactionService: TransactionService,
       private msgShare: MessageshareService
-    ){}
+    ){
+      this.gridOptions.pagination = true;
+      this.gridOptions.paginationPageSize = 5;
+      this.gridOptions.paginationPageSizeSelector = [5, 10, 15];
+      this.gridOptions.onPaginationChanged = this.onPaginationChanged;
+    }
 
     private rowData: transaction[] = [];
 
@@ -38,6 +43,9 @@ export class ViewTransactionsComponent {
       flex: 1,
       minWidth: 100
     };
+
+    private gridOptions: GridOptions = {};
+    private gridApi!: GridApi;
     
     TextMessage: string | undefined='';
   
@@ -45,6 +53,11 @@ export class ViewTransactionsComponent {
   
     allCodesForTransaction = environment.SecurityCodeList;
     selectedCodeForTransaction: any;
+
+    onPaginationChanged = (evt: PaginationChangedEvent) => {
+      this.gridApi = evt.api;
+      this.gridOptions.paginationPageSize = this.gridApi.paginationGetPageSize();
+    }
 
     viewTransactions = async () =>{
       try{

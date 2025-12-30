@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="field" *ngIf="showPositionArr">
-      <ag-grid-angular style="width: 100%; height: 250px;" [columnDefs]="this.colDefs" [rowData]="this.posData" [defaultColDef]="this.defaultColDef" />
+      <ag-grid-angular style="width: 100%; height: 250px;" [columnDefs]="this.colDefs" [rowData]="this.posData" [defaultColDef]="this.defaultColDef" [gridOptions]="this.gridOptions" />
     </div>
   </form>
 </div>
